@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: background-worker
+  namespace: default
+spec:
+  containers:
+  - name: background-worker
+    image: cassidychu/background-worker:1.1
+    env:
+    - name: RABTMQ_HOST
+      value: "10.8.14.141"   
+    - name: RABTMQ_PORT
+      value: "5672"  
+    - name: RABTMQ_USER
+      value: "guest"   
+    - name: RABTMQ_PASSWORD
+      value: "guest"
+    - name: MYSQL_HOST
+      value: "10.11.112.3"   
+    - name: MYSQL_USER
+      value: "admin"  
+    - name: MYSQL_PASSWORD
+      value: "cmpe172"       
+    imagePullPolicy: Always
+    ports:
+    - containerPort: 8080
+      protocol: TCP

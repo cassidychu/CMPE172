@@ -1,0 +1,10 @@
+apiVersion: "networking.k8s.io/v1"
+kind: "Ingress"
+metadata:
+  name: "spring-cashier-ingress"
+spec:
+  defaultBackend:
+    service:
+      name: "spring-cashier-service"
+      port:
+        number: 80

@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  name: starbucks-api
+  nampespace: default
+  labels: 
+    name: starbucks-api
+spec:
+  containers:
+    - image: cassidychu/spring-starbucks-api:1.0 
+    name: starbucks-api
+    ports:
+      - containerPort:8080
+      name: http
+      protocol: TCP

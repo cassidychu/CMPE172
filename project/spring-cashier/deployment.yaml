@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-cashier-deployment
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      name: spring-cashier
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      # unlike pod.yaml, the name is not included in the meta data as a unique name is
+      # generated from the deployment name
+      labels:
+        name: spring-cashier
+    spec:
+      containers:
+      - name: spring-cashier
+        image: cassidychu/spring-cashier:3.3
+        env:
+        - name: STARBUCKS_API_HOST
+          value: "34.72.5.157"   
+        - name: STARBUCKS_API_PORT
+          value: "80"  
+        - name: KONG_ENABLED
+          value: "true"   
+        - name: KONG_API_KEY
+          value: "Zkfokey2311"
+        - name: MYSQL_HOST
+          value: "10.11.112.3"   
+        - name: MYSQL_USER
+          value: "admin"  
+        - name: MYSQL_PASSWORD
+          value: "cmpe172"
+        ports:
+        - containerPort: 9090
+          protocol: TCP
+
+
+
